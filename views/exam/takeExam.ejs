@@ -1,0 +1,22 @@
+<% if (exam.questions && exam.questions.length > 0) { %>
+
+<% exam.questions.forEach((q, i) => { %>
+
+<div>
+<p><%= i+1 %>. <%= q.question %></p>
+
+<% q.options.forEach(opt => { %>
+<label>
+<input type="radio" name="answers[<%= i %>]" value="<%= opt %>">
+<%= opt %>
+</label><br>
+<% }) %>
+
+</div>
+<hr>
+
+<% }) %>
+
+<% } else { %>
+<p>No questions added yet.</p>
+<% } %>

@@ -1,0 +1,16 @@
+<%- include("../partials/header") %>
+
+<h2>Available Exams</h2>
+
+<% exams.forEach(exam => { %>
+  <div class="card">
+    <h3><%= exam.title %></h3>
+    <p><%= exam.description %></p>
+
+<a href="/student/exam/<%= exam._id %>">
+      <button>Start Exam</button>
+    </a>
+  </div>
+<% }) %>
+
+<%- include("../partials/footer") %>

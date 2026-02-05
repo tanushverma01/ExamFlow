@@ -3,6 +3,7 @@ const auth = require("./middleware/authMiddleware");
 const role = require("./middleware/roleMiddleware");
 const adminRoutes = require("./routes/adminRoutes");
 const authRoutes = require("./routes/authRoutes");
+const studentRoutes = require("./routes/studentRoutes");
 const cookieparser = require("cookie-parser");
 
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.static("public"));
 
 app.use("/api", authRoutes);
 app.use("/admin", adminRoutes);
+app.use("/student",studentRoutes);
 
 // Login pages
 app.get("/", (req, res) => {
@@ -28,8 +30,5 @@ app.get("/login", (req, res) => {
 });
 
 // Student dashboard
-app.get("/student/dashboard", auth, role("student"), (req, res) => {
-  res.render("student/dashboard");
-});
 
 module.exports = app;
