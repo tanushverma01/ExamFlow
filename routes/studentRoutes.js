@@ -18,8 +18,22 @@ router.get("/exam/:id", auth, role("student"), async (req, res) => {
 });
 
 // Submit exam
-router.post("/submit/:id", auth, role("student"), async (req,res)=>{
-  res.send("Exam submitted (evaluation next)");
+router.post("/submit/:id", auth, role("student"), async (req, res) => {
+  const exam = await Exam.findById(req.params.id);
+
+  let score = 0;
+
+  exam.questions.forEach((q, i) => {
+    if (req.body.answers[i] === q.correctAnswer) {
+      score++;
+    }
+  });
+
+  res.render("exam/result", {
+    total: exam.questions.length,
+    score
+  });
 });
+
 
 module.exports = router;

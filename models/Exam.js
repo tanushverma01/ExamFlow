@@ -1,12 +1,15 @@
 const mongoose = require("mongoose");
 
+const questionSchema = new mongoose.Schema({
+  question: String,
+  options: [String],
+  correctAnswer: String
+});
+
 const examSchema = new mongoose.Schema({
   title: String,
   description: String,
-  createdBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User"
-  },
+  questions: [questionSchema],
   createdAt: {
     type: Date,
     default: Date.now

@@ -1,13 +1,18 @@
-<%- include("../partials/header") %>
+<form method="POST" action="/admin/create-exam">
 
-<h2>Create Exam</h2>
+<input name="title" placeholder="Exam title" required>
+<input name="description" placeholder="Description" required>
 
-<div class="card">
-  <form method="POST" action="/admin/create-exam">
-    <input name="title" placeholder="Exam Title" required>
-    <input name="description" placeholder="Description" required>
-    <button>Create Exam</button>
-  </form>
-</div>
+<h3>Question</h3>
 
-<%- include("../partials/footer") %>
+<input name="question" placeholder="Question" required>
+
+<input name="option1" placeholder="Option 1" required>
+<input name="option2" placeholder="Option 2" required>
+<input name="option3" placeholder="Option 3" required>
+<input name="option4" placeholder="Option 4" required>
+
+<input name="correct" placeholder="Correct Answer" required>
+
+<button>Create Exam</button>
+</form>

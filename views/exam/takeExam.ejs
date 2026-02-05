@@ -1,3 +1,9 @@
+<%- include("../partials/header") %>
+
+<h2><%= exam.title %></h2>
+
+<form method="POST" action="/student/submit/<%= exam._id %>">
+
 <% if (exam.questions && exam.questions.length > 0) { %>
 
 <% exam.questions.forEach((q, i) => { %>
@@ -7,7 +13,7 @@
 
 <% q.options.forEach(opt => { %>
 <label>
-<input type="radio" name="answers[<%= i %>]" value="<%= opt %>">
+<input type="radio" name="answers[<%= i %>]" value="<%= opt %>" required>
 <%= opt %>
 </label><br>
 <% }) %>
@@ -20,3 +26,9 @@
 <% } else { %>
 <p>No questions added yet.</p>
 <% } %>
+
+<button type="submit">Submit Exam</button>
+
+</form>
+
+<%- include("../partials/footer") %>

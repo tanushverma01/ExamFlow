@@ -13,17 +13,23 @@ router.get("/create-exam", auth, role("admin"), (req, res) => {
   res.render("admin/createExam");
 });
 
-router.post("/create-exam", auth, role("admin"), async (req, res) => {
-  const { title, description } = req.body;
+router.post("/create-exam", async (req,res)=>{
+  const { title, description, question, option1, option2, option3, option4, correct } = req.body;
 
-  await Exam.create({
+  const exam = new Exam({
     title,
     description,
-    createdBy: req.user.id
+    questions: [{
+      question,
+      options: [option1, option2, option3, option4],
+      correctAnswer: correct
+    }]
   });
 
+  await exam.save();
   res.redirect("/admin/dashboard");
 });
+
 
 
 module.exports = router;
